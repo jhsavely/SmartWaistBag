@@ -1,61 +1,103 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
+  const StaggeredTile.count(3, 1),
+  const StaggeredTile.count(1, 2),
+  const StaggeredTile.count(3, 1),
+  const StaggeredTile.count(2, 2),
+  const StaggeredTile.count(2, 2),
+  const StaggeredTile.count(2, 2),
+  const StaggeredTile.count(2, 2),
+  const StaggeredTile.count(2, 2),
+  const StaggeredTile.count(2, 2),
+
+];
+
+List<Widget> _tiles = const <Widget>[
+  const _Example01Tile(Colors.pink, Icons.battery_alert),
+  const _Example01Tile(Colors.purple, Icons.wifi),
+  const _Example01Tile(Colors.lightBlue, Icons.bluetooth),
+  const _Example01Tile(Colors.brown, Icons.map),
+  const _Example01Tile(Colors.deepOrange, Icons.send),
+  const _Example01Tile(Colors.indigo, Icons.airline_seat_flat),
+  const _Example01Tile(Colors.blue, Icons.desktop_windows),
+  const _Example01Tile(Colors.green, Icons.widgets),
+  const _Example01Tile(Colors.amber, Icons.panorama_wide_angle),
+
+];
+
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: new ThemeData(
-          primaryTextTheme: TextTheme(title: TextStyle(color: Colors.white))),
-      home: DefaultTabController(
-        length: 1,
-        child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.lightBlue,
-              title: Text('smartwaistbag'),
-              centerTitle: true,
-              bottom: TabBar(
-                tabs: [
-                  Tab(
-                    text: 'Charge 76%',
-                  ),
-                ],
-                isScrollable: true,
-              ),
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyApp1(),
+    );
+  }
+}
+
+
+class MyApp1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.lightBlue,
+          title: Text('smartwaistbag'),
+          centerTitle: true,
+        ),
+        body: new Padding(
+            padding: const EdgeInsets.only(top: 1.0),
+            child: new StaggeredGridView.count(
+              crossAxisCount: 4,
+              staggeredTiles: _staggeredTiles,
+              children: _tiles,
+              mainAxisSpacing: 2.0,
+              crossAxisSpacing: 2.0,
+              padding: const EdgeInsets.all(1.0),
+            )
+        )
+    );
+  }
+}
+
+
+class _Example01Tile extends StatelessWidget {
+  const _Example01Tile(this.backgroundColor, this.iconData);
+
+  final Color backgroundColor;
+  final IconData iconData;
+
+  @override
+  Widget build(BuildContext context) {
+    return new Card(
+      color: backgroundColor,
+      child: new InkWell(
+        onTap: () {
+          final snackBar = SnackBar(content: Text("Tap"));
+
+          Scaffold.of(context).showSnackBar(snackBar);
+        },
+        child: new Center(
+          child: new Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: new Icon(
+              iconData,
+              color: Colors.white,
             ),
-            body: TabBarView(children: [
-              GridView(
-                scrollDirection: Axis.vertical,
-                controller: ScrollController(),
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200.0),
-                children: List.generate(6, (index) {
-                  return Container(
-                    padding: EdgeInsets.all(20.0),
-                    child: Center(
-                      child: GridTile(
-                        footer: Text(
-                          'Item $index',
-                          textAlign: TextAlign.center,
-                        ),
-                        header: Text(
-                          'SubItem $index',
-                          textAlign: TextAlign.center,
-                        ),
-                        child: Icon(Icons.settings,
-                            size: 40.0, color: Colors.white30),
-                      ),
-                    ),
-                    color: Colors.blue[400],
-                    margin: EdgeInsets.all(1.0),
-                  );
-                }),
-              ),
-            ])),
+          ),
+        ),
       ),
     );
   }
