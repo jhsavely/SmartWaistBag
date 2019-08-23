@@ -56,6 +56,24 @@ class MyApp1 extends StatelessWidget {
           backgroundColor: Colors.lightBlue,
           title: Text('smartwaistbag'),
           centerTitle: true,
+          leading: IconButton(
+              icon: Image.asset(
+                'images/github_logo_48.png',
+                fit: BoxFit.contain,
+                height: 32,
+              ),
+             // onPressed: () => _showToast(context),
+              tooltip: 'Prev'),
+          actions: <Widget>[
+            IconButton(
+                icon: Image.asset(
+                  'images/github_logo_256.png',
+                  fit: BoxFit.contain,
+                  height: 32,
+                ),
+            //    onPressed: () => _showToast(context),
+                tooltip: 'Next')
+          ],
         ),
         body: new Padding(
             padding: const EdgeInsets.only(top: 1.0),
