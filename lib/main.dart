@@ -2,28 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
-  const StaggeredTile.count(3, 1),
-  const StaggeredTile.count(1, 2),
-  const StaggeredTile.count(3, 1),
-  const StaggeredTile.count(2, 2),
-  const StaggeredTile.count(2, 2),
-  const StaggeredTile.count(2, 2),
-  const StaggeredTile.count(2, 2),
-  const StaggeredTile.count(2, 2),
-  const StaggeredTile.count(2, 2),
+  const StaggeredTile.count(7, 2),
+  const StaggeredTile.count(2, 4),
+  const StaggeredTile.count(7, 2),
+  const StaggeredTile.count(3, 5),
+  const StaggeredTile.count(3, 5),
+  const StaggeredTile.count(3, 5),
+  const StaggeredTile.count(3, 5),
+  const StaggeredTile.count(3, 5),
+  const StaggeredTile.count(3, 5),
 
 ];
 
 List<Widget> _tiles = const <Widget>[
-  const _Example01Tile(Colors.pink, Icons.battery_alert),
-  const _Example01Tile(Colors.purple, Icons.wifi),
-  const _Example01Tile(Colors.lightBlue, Icons.bluetooth),
-  const _Example01Tile(Colors.brown, Icons.map),
-  const _Example01Tile(Colors.deepOrange, Icons.send),
-  const _Example01Tile(Colors.indigo, Icons.airline_seat_flat),
-  const _Example01Tile(Colors.blue, Icons.desktop_windows),
-  const _Example01Tile(Colors.green, Icons.widgets),
-  const _Example01Tile(Colors.amber, Icons.panorama_wide_angle),
+  const _MyTile(Colors.pink, Icons.battery_alert),
+  const _MyTile(Colors.purple, Icons.wifi),
+  const _MyTile(Colors.lightBlue, Icons.bluetooth),
+  const _MyTile(Colors.brown, Icons.fingerprint),
+  const _MyTile(Colors.deepOrange, Icons.map),
+  const _MyTile(Colors.indigo, Icons.book),
+  const _MyTile(Colors.blue, Icons.lock),
+  const _MyTile(Colors.green, Icons.alarm),
+  const _MyTile(Colors.amber, Icons.settings),
 
 ];
 
@@ -33,12 +33,10 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -78,12 +76,12 @@ class MyApp1 extends StatelessWidget {
         body: new Padding(
             padding: const EdgeInsets.only(top: 1.0),
             child: new StaggeredGridView.count(
-              crossAxisCount: 4,
+              crossAxisCount: 9,
               staggeredTiles: _staggeredTiles,
               children: _tiles,
-              mainAxisSpacing: 2.0,
-              crossAxisSpacing: 2.0,
-              padding: const EdgeInsets.all(1.0),
+              mainAxisSpacing: 1.0,
+              crossAxisSpacing: 1.0,
+              padding: const EdgeInsets.all(9.0),
             )
         )
     );
@@ -91,8 +89,8 @@ class MyApp1 extends StatelessWidget {
 }
 
 
-class _Example01Tile extends StatelessWidget {
-  const _Example01Tile(this.backgroundColor, this.iconData);
+class _MyTile extends StatelessWidget {
+  const _MyTile(this.backgroundColor, this.iconData);
 
   final Color backgroundColor;
   final IconData iconData;
@@ -109,7 +107,7 @@ class _Example01Tile extends StatelessWidget {
         },
         child: new Center(
           child: new Padding(
-            padding: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(1.0),
             child: new Icon(
               iconData,
               color: Colors.white,
