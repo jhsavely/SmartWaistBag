@@ -57,4 +57,7 @@ void main(){
    print('The value of list before replacing ${l}');
    l.replaceRange(0,3,[11,23,24]);
    print('The value of list after replacing the items between the range [0-3] is ${l}');
+   dynamic remover = l.removeAt(1);
+   print('The value of the element ${res}');
+   print('The value of list after removing the list element ${l}');
 }
