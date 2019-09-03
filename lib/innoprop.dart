@@ -60,4 +60,6 @@ void main(){
    dynamic remover = l.removeAt(1);
    print('The value of the element ${res}');
    print('The value of list after removing the list element ${l}');
+   var details = {'Usrname':'tom','Password':'pass@123'};
+   print(details); 
 }
