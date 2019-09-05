@@ -1,3 +1,22 @@
+import 'dart:math';
+
+enum Status {
+   none,
+   running,
+   stopped,
+   paused
+}
+
+test_param(int a, String b, [s1]){//s1 is optional parameter
+  const k = 123;
+  if(a < k){
+    print(b);
+  } else {
+    print(a);
+  }
+  print(s1);
+}
+
 void main(){
   var myvar='hell';
   var Myvar='o';
@@ -61,5 +80,23 @@ void main(){
    print('The value of the element ${res}');
    print('The value of list after removing the list element ${l}');
    var details = {'Usrname':'tom','Password':'pass@123'};
-   print(details); 
+   print(details);
+   details['Uid'] = 'Uqoolele';
+   print(details);
+   print("=======");
+   var five = 5;
+   for( int i = 0; i < 10; i++) {
+    five *= 5 ;
+    print(five);
+   }
+   var usrMap = {"name": "Tom", 'Email': 'tom@xyz.com'};
+   usrMap.forEach((k,v) => print('${k}: ${v}'));
+   print("=======");
+   print(Status.values);
+   Status.values.forEach((v) => print('value: $v, index: ${v.index}'));
+   print('running: ${Status.running}, ${Status.running.index}');
+   print('running index: ${Status.values[1]}');
+   print("=======");
+   test_param(122,"This is not enough");
+   print("=======");
 }
