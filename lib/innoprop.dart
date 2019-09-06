@@ -31,6 +31,33 @@ test_param(int a, String b, {s2:12}){//s1 is optional parameter
 
 String printMsg()=>"first lambda";
 
+class Car {
+  int id;
+  String name = 'Peugeot';
+  String engine = "E1004";
+  Car(){//set via constrictor
+    this.engine = engine;
+  }
+  Car.namedConstructor(String engine) {
+      print("second engine is : ${engine}");
+   }
+
+  int get car_id{
+    return id;
+  }
+
+  void set car_id(int id){
+    this.id = id;
+  }
+
+  String get car_name{
+    return name;
+  }
+  void set car_name(String name){//set via setter
+    this.name = name;
+  }
+}
+
 void main(){
   var myvar = 'hell';
   var Myvar = 'o';
@@ -86,13 +113,13 @@ void main(){
    print(lst);
    print("last element of list is: ${lst.last}");
    print("the list values in reverse order: ${lst.reversed}");
-   List l = [1, 2, 3,4,5,6,7,8,9];
-   print('The value of list before replacing ${l}');
-   l.replaceRange(0,3,[11,23,24]);
-   print('The value of list after replacing the items between the range [0-3] is ${l}');
-   dynamic remover = l.removeAt(1);
+   List list1 = [1, 2, 3,4,5,6,7,8,9];
+   print('The value of list before replacing ${list1}');
+   list1.replaceRange(0,3,[11,23,24]);
+   print('The value of list after replacing the items between the range [0-3] is ${list1}');
+   dynamic remover = list1.removeAt(1);
    print('The value of the element ${res}');
-   print('The value of list after removing the list element ${l}');
+   print('The value of list after removing the list element ${list1}');
    var details = {'Usrname':'tom','Password':'pass@123'};
    print(details);
    details['Uid'] = 'Uqoolele';
@@ -116,4 +143,14 @@ void main(){
    print(printMsg());
    ConsolePrinter cp = new ConsolePrinter();
    cp.print_data();
+   print("=======");
+   Car car = new Car();
+   print("car engine: ${car.engine}");
+   Car car_two = new Car.namedConstructor("E1005");
+   print("current car: ${car.car_name}");
+   car.car_name = 'VW';
+   print("current car: ${car.car_name}");
+   print("current car id: ${car.car_id}");
+   car.car_id = 123000;
+   print("current car id: ${car.car_id}");
 }
