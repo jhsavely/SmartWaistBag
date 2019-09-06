@@ -7,20 +7,34 @@ enum Status {
    paused
 }
 
-test_param(int a, String b, [s1]){//s1 is optional parameter
+class Printer {
+   void print_data() {
+    print("prints");
+   }
+}
+class ConsolePrinter implements Printer {
+  String engine = "E1002";
+   void print_data() {
+      print("prints ${engine}");
+   }
+}
+
+test_param(int a, String b, {s2:12}){//s1 is optional parameter
   const k = 123;
   if(a < k){
     print(b);
   } else {
     print(a);
   }
-  print(s1);
+  if(s2 > 10) print(s2);
 }
 
+String printMsg()=>"first lambda";
+
 void main(){
-  var myvar='hell';
-  var Myvar='o';
-  double n=2.20;// int n = "word"; is an error
+  var myvar = 'hell';
+  var Myvar = 'o';
+  double n = 2.20;// int n = "word"; is an error
   var num = n is! int;
   dynamic tom = "tom";
   dynamic appleAmount = 10;
@@ -99,4 +113,7 @@ void main(){
    print("=======");
    test_param(122,"This is not enough");
    print("=======");
+   print(printMsg());
+   ConsolePrinter cp = new ConsolePrinter();
+   cp.print_data();
 }
