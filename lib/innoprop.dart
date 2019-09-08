@@ -8,14 +8,14 @@ enum Status {
 }
 
 class Printer {
-   void print_data() {
-    print("prints");
+   void status() {
+    print("turned on");
    }
 }
 class ConsolePrinter implements Printer {
-  String engine = "E1002";
-   void print_data() {
-      print("prints ${engine}");
+  String ink = "E1002";
+   void status() {
+      print("prints ${ink}");
    }
 }
 
@@ -32,30 +32,63 @@ test_param(int a, String b, {s2:12}){//s1 is optional parameter
 String printMsg()=>"first lambda";
 
 class Car {
-  int id;
-  String name = 'Peugeot';
-  String engine = "E1004";
+
+  String brand_name;
+  String engine;
+  int volume = 50;
   Car(){//set via constrictor
+    this.volume = volume;
     this.engine = engine;
   }
   Car.namedConstructor(String engine) {
       print("second engine is : ${engine}");
    }
 
-  int get car_id{
-    return id;
+  String get car_brand_name{
+    return brand_name;
   }
 
-  void set car_id(int id){
-    this.id = id;
+  void set car_brand_name(String brand_name){//set via setter
+    this.brand_name = brand_name;
   }
 
-  String get car_name{
-    return name;
+  int get car_volume{
+    return volume;
   }
-  void set car_name(String name){//set via setter
-    this.name = name;
+
+  void set car_volume(int volume){
+    this.volume = volume;
   }
+
+  void car_vol() {
+      print("car volume ${volume}");
+   }
+}
+
+class Minivan extends Car{
+  int volume = 60;
+  int climate;
+
+  int get minivan_climate{
+    return this.climate;
+  }
+
+  int set minivan_climate(int climate){
+    this.climate = climate;
+  }
+
+  void minivan_vol() {
+      print("minivan volume ${volume}");
+      print("car volume ${super.volume}");
+   }
+
+   void minivan_method() {
+      print("This is a  minivan method");
+   }
+
+   void minivan_method_one() {
+      print("This is a  minivan method one");
+   }
 }
 
 void main(){
@@ -144,13 +177,11 @@ void main(){
    ConsolePrinter cp = new ConsolePrinter();
    cp.print_data();
    print("=======");
-   Car car = new Car();
-   print("car engine: ${car.engine}");
-   Car car_two = new Car.namedConstructor("E1005");
-   print("current car: ${car.car_name}");
-   car.car_name = 'VW';
-   print("current car: ${car.car_name}");
-   print("current car id: ${car.car_id}");
-   car.car_id = 123000;
-   print("current car id: ${car.car_id}");
+   Minivan mv = new Minivan();
+   mv.minivan_vol();
+   new Minivan() //!!!no semicolon
+   ..minivan_method() //!!!no semicolon
+   ..minivan_method_one(); //here it is, final semicolon
+   print(mv.volume.toString());
+
 }
