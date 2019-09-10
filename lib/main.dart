@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter_svg/svg.dart';
 
 List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
   const StaggeredTile.count(7, 2),
@@ -42,6 +43,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
+final String assetName = 'images/user_profile_3.svg';
+
 class MyApp1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,7 @@ class MyApp1 extends StatelessWidget {
                 fit: BoxFit.contain,
                 height: 32,
               ),
-              // onPressed: () => _showToast(context),
+               onPressed: () => _showToast(context),
               tooltip: 'Prev'),
           actions: <Widget>[
             IconButton(
@@ -65,7 +68,10 @@ class MyApp1 extends StatelessWidget {
                   fit: BoxFit.contain,
                   height: 32,
                 ),
-                //    onPressed: () => _showToast(context),
+                onPressed: () {
+                  final snackBar = SnackBar(content: Text("Tap"));
+                  Scaffold.of(context).showSnackBar(snackBar);
+                },
                 tooltip: 'Next')
           ],
         ),
@@ -96,7 +102,7 @@ class _MyTile extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SecondRoute()),
+            MaterialPageRoute(builder: (context) => SecondScreen()),
           );
         },
 //        {
@@ -118,7 +124,7 @@ class _MyTile extends StatelessWidget {
   }
 }
 
-class SecondRoute extends StatelessWidget {
+class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,12 +133,26 @@ class SecondRoute extends StatelessWidget {
       ),
       body: Center(
         child: RaisedButton(
+          elevation: 5,
+          padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 40.0),
+          child: SvgPicture.asset(assetName,
+              color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Go back!'),
         ),
       ),
     );
   }
+}
+
+void _showToast(BuildContext context) {
+  final scaffold = Scaffold.of(context);
+  scaffold.showSnackBar(
+    SnackBar(
+      content: const Text('Added to favorite'),
+      action: SnackBarAction(
+          label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
+    ),
+  );
 }
