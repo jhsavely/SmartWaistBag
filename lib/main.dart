@@ -15,10 +15,10 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
 ];
 
 List<Widget> _tiles = const <Widget>[
-  const _MyTile(Colors.pink, Icons.battery_alert),
-  const _MyTile(Colors.lightBlueAccent, Icons.wifi),
-  const _MyTile(Colors.lightBlue, Icons.bluetooth),
-  const _MyTile(Colors.brown, Icons.fingerprint),
+  const _MyTile(Color(0xDDF1F5AA), Icons.battery_alert),
+  const _MyTile(Color(0xDDF1F5AA), Icons.wifi),
+  const _MyTile(Color(0xDDF1F5AA), Icons.bluetooth),
+  const _MyTile(Color(0xDDF1F5AA), Icons.fingerprint),
   const _MyTile(Colors.deepOrange, Icons.map),
   const _MyTile(Colors.indigo, Icons.book),
   const _MyTile(Colors.blue, Icons.lock),
@@ -59,7 +59,7 @@ class MyApp1 extends StatelessWidget {
                 fit: BoxFit.contain,
                 height: 32,
               ),
-               onPressed: () => _showToast(context),
+              onPressed: () => _showToast(context),
               tooltip: 'Prev'),
           actions: <Widget>[
             IconButton(
@@ -107,7 +107,6 @@ class _MyTile extends StatelessWidget {
         },
 //        {
 //          final snackBar = SnackBar(content: Text("Tap"));
-//
 //          Scaffold.of(context).showSnackBar(snackBar);
 //        },
         child: new Center(
@@ -132,14 +131,17 @@ class SecondScreen extends StatelessWidget {
         title: Text("On the next Screen"),
       ),
       body: Center(
-        child: RaisedButton(
-          elevation: 5,
-          padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 40.0),
-          child: SvgPicture.asset(assetName,
-              color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        child: new Container(
+          width: 200,
+          height: 200,
+          child: RaisedButton(
+            elevation: 8,
+            padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 40.0),
+            child: SvgPicture.asset(assetName, color: Colors.black),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
       ),
     );
