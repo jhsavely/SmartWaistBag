@@ -19,11 +19,11 @@ List<Widget> _tiles = const <Widget>[
   const _MyTile(Color(0xDDF1F5AA), Icons.wifi),
   const _MyTile(Color(0xDDF1F5AA), Icons.bluetooth),
   const _MyTile(Color(0xDDF1F5AA), Icons.fingerprint),
-  const _MyTile(Colors.deepOrange, Icons.map),
-  const _MyTile(Colors.indigo, Icons.book),
-  const _MyTile(Colors.blue, Icons.lock),
-  const _MyTile(Colors.green, Icons.alarm),
-  const _MyTile(Colors.amber, Icons.settings),
+  const _MyTile(Color(0xDDF1F5AA), Icons.map),
+  const _MyTile(Color(0xDDF1F5AA), Icons.book),
+  const _MyTile(Color(0xDDF1F5AA), Icons.lock),
+  const _MyTile(Color(0xDDF1F5AA), Icons.alarm),
+  const _MyTile(Color(0xDDF1F5AA), Icons.settings),
 ];
 
 void main() {
@@ -50,7 +50,7 @@ class MyApp1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.lightBlue,
+          backgroundColor: Color(0xCFE2F3AA),
           title: Text('smartwaistbag'),
           centerTitle: true,
           leading: IconButton(
