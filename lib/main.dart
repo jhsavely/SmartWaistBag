@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
+import 'dart:convert';
+import 'API.dart';
+import 'User.dart';
 
 List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
   const StaggeredTile.count(7, 2),
@@ -43,7 +46,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final String assetName = 'images/user_profile_3.svg';
 
 class MyApp1 extends StatelessWidget {
   @override
@@ -90,7 +92,6 @@ class MyApp1 extends StatelessWidget {
 
 class _MyTile extends StatelessWidget {
   const _MyTile(this.backgroundColor, this.iconData);
-
   final Color backgroundColor;
   final IconData iconData;
 
@@ -102,7 +103,7 @@ class _MyTile extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SecondScreen()),
+            MaterialPageRoute(builder: (context) => new ThirdScreen()), //TODO:solve problem with called class from another file
           );
         },
 //        {
@@ -122,6 +123,8 @@ class _MyTile extends StatelessWidget {
     );
   }
 }
+
+final String assetName = 'images/user_profile_3.svg';
 
 class SecondScreen extends StatelessWidget {
   @override
@@ -145,6 +148,49 @@ class SecondScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+
+
+class ThirdScreen extends StatefulWidget{
+  @override
+  createState() => _ThirdScreenState();
+}
+
+class _ThirdScreenState extends State {
+  var users = new List<User>();
+
+  _getUsers() {
+    API.getUsers().then((response) {
+      setState(() {
+        Iterable list = json.decode(response.body);
+        users = list.map((model) => User.fromJson(model)).toList();
+      });
+    });
+  }
+
+  initState() {
+    super.initState();
+    _getUsers();
+  }
+
+  dispose() {
+    super.dispose();
+  }
+
+  @override
+  build(context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("User List"),
+        ),
+        body: ListView.builder(
+          itemCount: users.length,
+          itemBuilder: (context, index) {
+            return ListTile(title: Text(users[index].name));
+          },
+        ));
   }
 }
 
