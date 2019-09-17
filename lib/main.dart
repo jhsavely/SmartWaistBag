@@ -164,8 +164,8 @@ class _ThirdScreenState extends State {
   _getMySettings() {
     API.getSettings().then((response) {
       setState(() {
-        Map list = json.decode(response.body);
-       // settings = list.map((model) => MySettings.fromJson(model)).toList();
+        Iterable list = json.decode(response.body);
+        settings = list.map((model) => MySettings.fromJson(model)).toList();
       });
     });
   }
@@ -181,8 +181,8 @@ class _ThirdScreenState extends State {
 
   initState() {
     super.initState();
-   // _getMySettings();
-    _getUsers();
+    _getMySettings();
+    //_getUsers();
   }
 
   dispose() {
@@ -190,15 +190,15 @@ class _ThirdScreenState extends State {
   }
 
   @override
-  build(context) {
+  build(context) {//TODO: wrap with try block and catch normal exceptions
     return Scaffold(
         appBar: AppBar(
           title: Text("User List"),
         ),
         body: ListView.builder(
-          itemCount: users.length,
+          itemCount: settings.length,
           itemBuilder: (context, index) {
-            return ListTile(title: Text(users[index].name));
+            return ListTile(title: Text(settings[index].name));
           },
         ));
   }
