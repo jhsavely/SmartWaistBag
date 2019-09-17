@@ -1,11 +1,16 @@
 import 'dart:async';
 import 'package:http/http.dart' as http;
 
-const baseURL = "https://jsonplaceholder.typicode.com";
+const settingsURL = "http://192.168.0.103:8084/SttingsServlet";
+const userURL = "https://jsonplaceholder.typicode.com";
 
 class API{
-  static Future getUsers(){
-    var url = baseURL + "/users";
+  static Future getSettings(){
+    var url = settingsURL  + "/set";
+    return http.get(url);
+  }
+  static Future getUsers() {
+    var url = userURL + "/users";
     return http.get(url);
   }
 }

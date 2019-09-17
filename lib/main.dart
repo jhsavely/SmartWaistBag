@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'dart:convert';
 import 'API.dart';
 import 'User.dart';
+import 'MySettings.dart';
 
 List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
   const StaggeredTile.count(7, 2),
@@ -151,8 +152,6 @@ class SecondScreen extends StatelessWidget {
   }
 }
 
-
-
 class ThirdScreen extends StatefulWidget{
   @override
   createState() => _ThirdScreenState();
@@ -160,6 +159,16 @@ class ThirdScreen extends StatefulWidget{
 
 class _ThirdScreenState extends State {
   var users = new List<User>();
+  var settings = new List<MySettings>();
+
+  _getMySettings() {
+    API.getSettings().then((response) {
+      setState(() {
+        Map list = json.decode(response.body);
+       // settings = list.map((model) => MySettings.fromJson(model)).toList();
+      });
+    });
+  }
 
   _getUsers() {
     API.getUsers().then((response) {
@@ -172,6 +181,7 @@ class _ThirdScreenState extends State {
 
   initState() {
     super.initState();
+   // _getMySettings();
     _getUsers();
   }
 
