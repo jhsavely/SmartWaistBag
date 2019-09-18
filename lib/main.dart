@@ -19,16 +19,19 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
 ];
 
 List<Widget> _tiles = const <Widget>[
-  const _MyTile(Color(0xDDF1F5AA), Icons.battery_alert),
-  const _MyTile(Color(0xDDF1F5AA), Icons.wifi),
-  const _MyTile(Color(0xDDF1F5AA), Icons.bluetooth),
-  const _MyTile(Color(0xDDF1F5AA), Icons.fingerprint),
-  const _MyTile(Color(0xDDF1F5AA), Icons.map),
-  const _MyTile(Color(0xDDF1F5AA), Icons.book),
-  const _MyTile(Color(0xDDF1F5AA), Icons.lock),
-  const _MyTile(Color(0xDDF1F5AA), Icons.alarm),
-  const _MyTile(Color(0xDDF1F5AA), Icons.settings),
+  const _MyTile(Color(0xb0bec5AA), Icons.battery_alert),
+  const _MyTile(Color(0xb0bec5AA), Icons.wifi),
+  const _MyTile(Color(0xb0bec5AA), Icons.bluetooth),
+  const _MyTile(Color(0xb0bec5AA), Icons.fingerprint),
+  const _MyTile(Color(0xb0bec5AA), Icons.map),
+  const _MyTile(Color(0xb0bec5AA), Icons.book),
+  const _MyTile(Color(0xb0bec5AA), Icons.lock),
+  const _MyTile(Color(0xb0bec5AA), Icons.alarm),
+  const _MyTile(Color(0xb0bec5AA), Icons.settings),
 ];
+
+final icons = [Icons.battery_alert, Icons.wifi, Icons.bluetooth, Icons.directions_car, Icons.fingerprint,
+  Icons.directions_run, Icons.directions_subway, Icons.directions_transit,  Icons.directions_walk];
 
 void main() {
   runApp(MyApp());
@@ -53,7 +56,7 @@ class MyApp1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xCFE2F3AA),
+          backgroundColor: Color(0xb0bec5AA),
           title: Text('smartwaistbag'),
           centerTitle: true,
           leading: IconButton(
@@ -158,7 +161,6 @@ class ThirdScreen extends StatefulWidget{
 }
 
 class _ThirdScreenState extends State {
-  var users = new List<User>();
   var settings = new List<MySettings>();
 
   _getMySettings() {
@@ -170,19 +172,9 @@ class _ThirdScreenState extends State {
     });
   }
 
-  _getUsers() {
-    API.getUsers().then((response) {
-      setState(() {
-        Iterable list = json.decode(response.body);
-        users = list.map((model) => User.fromJson(model)).toList();
-      });
-    });
-  }
-
   initState() {
     super.initState();
     _getMySettings();
-    //_getUsers();
   }
 
   dispose() {
@@ -193,12 +185,17 @@ class _ThirdScreenState extends State {
   build(context) {//TODO: wrap with try block and catch normal exceptions
     return Scaffold(
         appBar: AppBar(
-          title: Text("User List"),
+          title: Text("Settings"),
         ),
         body: ListView.builder(
           itemCount: settings.length,
           itemBuilder: (context, index) {
-            return ListTile(title: Text(settings[index].name));
+           // return ListTile(title: Text(settings[index].name));
+            return Card(
+              child:ListTile(
+                  leading: Icon(icons[index]),
+                  title: Text(settings[index].name)) ,
+            );
           },
         ));
   }
@@ -208,7 +205,7 @@ void _showToast(BuildContext context) {
   final scaffold = Scaffold.of(context);
   scaffold.showSnackBar(
     SnackBar(
-      content: const Text('Added to favorite'),
+      content: const Text('Toast is shown'),
       action: SnackBarAction(
           label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
     ),
