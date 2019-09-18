@@ -1,4 +1,4 @@
-class MySettings {
+class SettingsModel {
   int id;
   String name;
   String settingOne;
@@ -6,7 +6,7 @@ class MySettings {
   String settingThree;
   String settingFour;
 
-  MySettings(int id, String name,String settingOne, String settingTwo, String settingThree, String settingFour) {
+  SettingsModel(int id, String name,String settingOne, String settingTwo, String settingThree, String settingFour) {
     this.id = id;
     this.name = name;
     this.settingOne = settingOne;
@@ -15,7 +15,7 @@ class MySettings {
     this.settingFour = settingFour;
   }
 
-  MySettings.fromJson(Map json)
+  SettingsModel.fromJson(Map json)
       : id = json['id'],
         name = json['name'],
         settingOne = json['settingOne'],
