@@ -58,9 +58,9 @@ class MyApp1 extends StatelessWidget {
           centerTitle: true,
           leading: IconButton(
               icon: Image.asset(
-                'images/github_logo_48.png',
+                'images/logo_001.png',
                 fit: BoxFit.contain,
-                height: 32,
+                height: 56,
               ),
               onPressed: () => _showToast(context),
               tooltip: 'Prev'),

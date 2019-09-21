@@ -47,6 +47,7 @@ class _SettingsScreenState extends State {
   }
 
   bool _lights = false;
+
   @override
   build(context) {
     return Scaffold(
@@ -54,12 +55,16 @@ class _SettingsScreenState extends State {
           title: Text("Settings"),
         ),
         body: ListView.builder(
-          itemCount: settings.length,
+          itemCount: settings.length-1,
           itemBuilder: (context, index) {
             return Card(
               child: SwitchListTile(
                   value: _lights,
-                  onChanged: (bool value) { setState(() { _lights = value; }); },
+                  onChanged: (bool value) {
+                    setState(() {
+                      _lights = value;
+                    });
+                  },
                   secondary: Icon(icons[index]),
                   title: Text(settings[index].name)),
             );

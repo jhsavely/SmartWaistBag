@@ -50,6 +50,7 @@ flutter:
     - images/user_profile_2.svg
     - images/github_logo_48.png
     - images/github_logo_256.png
+    - images/logo_001.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
