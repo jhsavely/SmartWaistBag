@@ -3,8 +3,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'SettingsScreen.dart';
 
-
-
 List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
   const StaggeredTile.count(7, 2),
   const StaggeredTile.count(2, 4),
@@ -29,12 +27,11 @@ List<Widget> _tiles = const <Widget>[
   const _MyTile(Color(0xb0bec5AA), Icons.settings),
 ];
 
-
 void main() {
-  runApp(MyApp());
+  runApp(HomePage());
 }
 
-class MyApp extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,13 +39,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyApp1(),
+      home: MainMenu(),
     );
   }
 }
 
-
-class MyApp1 extends StatelessWidget {
+class MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -62,7 +58,20 @@ class MyApp1 extends StatelessWidget {
                 fit: BoxFit.contain,
                 height: 56,
               ),
-              onPressed: () => _showToast(context),
+              onPressed: () {
+                final snackBar = SnackBar(
+                  content: Text('A SnackBar!'),
+                  action: SnackBarAction(
+                    label: 'Undo',
+                    onPressed: () {
+                      // Some code to undo the change.
+                    },
+                  ),
+                );
+                // Find the Scaffold in the widget tree and use
+                // it to show a SnackBar.
+                Scaffold.of(context).showSnackBar(snackBar);
+              },
               tooltip: 'Prev'),
           actions: <Widget>[
             IconButton(
@@ -93,6 +102,7 @@ class MyApp1 extends StatelessWidget {
 
 class _MyTile extends StatelessWidget {
   const _MyTile(this.backgroundColor, this.iconData);
+
   final Color backgroundColor;
   final IconData iconData;
 
@@ -113,7 +123,7 @@ class _MyTile extends StatelessWidget {
 //        },
         child: new Center(
           child: new Padding(
-            padding: const EdgeInsets.all(1.0),
+            padding: const EdgeInsets.all(0.01),
             child: new Icon(
               iconData,
               color: Colors.white,
@@ -125,6 +135,30 @@ class _MyTile extends StatelessWidget {
   }
 }
 
+class SnackBarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: RaisedButton(
+        onPressed: () {
+          final snackBar = SnackBar(
+            content: Text('Yay! A SnackBar!'),
+            action: SnackBarAction(
+              label: 'Undo',
+              onPressed: () {
+                // Some code to undo the change.
+              },
+            ),
+          );
+          // Find the Scaffold in the widget tree and use
+          // it to show a SnackBar.
+          Scaffold.of(context).showSnackBar(snackBar);
+        },
+        child: Text('Show SnackBar'),
+      ),
+    );
+  }
+}
 
 void _showToast(BuildContext context) {
   final scaffold = Scaffold.of(context);
