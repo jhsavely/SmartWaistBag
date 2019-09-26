@@ -3,30 +3,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'SettingsScreen.dart';
 
-List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
-  const StaggeredTile.count(7, 2),
-  const StaggeredTile.count(2, 4),
-  const StaggeredTile.count(7, 2),
-  const StaggeredTile.count(3, 5),
-  const StaggeredTile.count(3, 5),
-  const StaggeredTile.count(3, 5),
-  const StaggeredTile.count(3, 5),
-  const StaggeredTile.count(3, 5),
-  const StaggeredTile.count(3, 5),
-];
-
-List<Widget> _tiles = const <Widget>[
-  const _MyTile(Color(0xb0bec5AA), Icons.battery_alert),
-  const _MyTile(Color(0xb0bec5AA), Icons.wifi),
-  const _MyTile(Color(0xb0bec5AA), Icons.bluetooth),
-  const _MyTile(Color(0xb0bec5AA), Icons.fingerprint),
-  const _MyTile(Color(0xb0bec5AA), Icons.map),
-  const _MyTile(Color(0xb0bec5AA), Icons.book),
-  const _MyTile(Color(0xb0bec5AA), Icons.lock),
-  const _MyTile(Color(0xb0bec5AA), Icons.alarm),
-  const _MyTile(Color(0xb0bec5AA), Icons.settings),
-];
-
 void main() {
   runApp(HomePage());
 }
@@ -49,7 +25,7 @@ class MainMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xb0bec5AA),
+          backgroundColor: Colors.grey,
           title: Text('smartwaistbag'),
           centerTitle: true,
           leading: IconButton(
@@ -68,8 +44,7 @@ class MainMenu extends StatelessWidget {
                     },
                   ),
                 );
-                // Find the Scaffold in the widget tree and use
-                // it to show a SnackBar.
+                // Find the Scaffold in the widget tree and use it to show a SnackBar.
                 Scaffold.of(context).showSnackBar(snackBar);
               },
               tooltip: 'Prev'),
@@ -87,76 +62,80 @@ class MainMenu extends StatelessWidget {
                 tooltip: 'Next')
           ],
         ),
-        body: new Padding(
-            padding: const EdgeInsets.only(top: 1.0),
-            child: new StaggeredGridView.count(
-              crossAxisCount: 9,
-              staggeredTiles: _staggeredTiles,
-              children: _tiles,
-              mainAxisSpacing: 1.0,
-              crossAxisSpacing: 1.0,
-              padding: const EdgeInsets.all(9.0),
-            )));
+        body: MenuLayout()
+        );
   }
 }
 
-class _MyTile extends StatelessWidget {
-  const _MyTile(this.backgroundColor, this.iconData);
-
-  final Color backgroundColor;
-  final IconData iconData;
+class MenuLayout extends StatelessWidget {
+  final text = new Text('Text here', style: new TextStyle(fontSize: 20.0));
+  final margin = const EdgeInsets.only(top: 10.0, bottom: 10.0, right: 10.0, left: 10.0);
+  final backColor = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
-    return new Card(
-      color: backgroundColor,
-      child: new InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => new SettingsScreen()),
-          );
-        },
-//        {
-//          final snackBar = SnackBar(content: Text("Tap"));
-//          Scaffold.of(context).showSnackBar(snackBar);
-//        },
-        child: new Center(
-          child: new Padding(
-            padding: const EdgeInsets.all(0.01),
-            child: new Icon(
-              iconData,
-              color: Colors.white,
+    //var width = MediaQuery.of(context).size.width; // Using this line I got the device screen width
+    return new Scaffold(
+      body: new SafeArea(
+        //I didn't add appbar. this will add necessary padding for status bar.
+        child: new Column(
+          children: [
+            new Expanded(
+              flex: 2,
+              child: new Container(
+                //width: width / 1.5,
+                // this will give you flexible width not fixed width
+                margin: margin,
+                // variable
+                color: backColor,
+                // variable
+                child: new Column(
+                  children: <Widget>[
+                    new Expanded(
+                      flex: 1,
+                      child: new Container(
+                        alignment: Alignment.topCenter,
+                        child: text, //variable above
+                      ),
+                    ),
+                    new Expanded(
+                      flex: 1,
+                      child: new Container(
+                        alignment: Alignment.bottomCenter,
+                        child: text, //variable above
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
+            new Expanded(
+              flex: 3,
+              child: new Container(
+                //width: width / 1.5,
+                // this will give you flexible width not fixed width
+                margin: margin,
+                //variable
+                color: backColor, //variable
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class SnackBarPage extends StatelessWidget {
+class Indication extends StatefulWidget {
+  @override
+  _IndicationState createState() => _IndicationState();
+}
+
+class _IndicationState extends State<Indication> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: RaisedButton(
-        onPressed: () {
-          final snackBar = SnackBar(
-            content: Text('Yay! A SnackBar!'),
-            action: SnackBarAction(
-              label: 'Undo',
-              onPressed: () {
-                // Some code to undo the change.
-              },
-            ),
-          );
-          // Find the Scaffold in the widget tree and use
-          // it to show a SnackBar.
-          Scaffold.of(context).showSnackBar(snackBar);
-        },
-        child: Text('Show SnackBar'),
-      ),
-    );
+    // TODO: implement build
+    return null;
   }
 }
 
