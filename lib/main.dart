@@ -24,6 +24,7 @@ class MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+
         appBar: AppBar(
           backgroundColor: Colors.grey,
           title: Text('smartwaistbag'),
@@ -75,33 +76,41 @@ class MenuLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //var width = MediaQuery.of(context).size.width; // Using this line I got the device screen width
-    return new Scaffold(
-      body: new SafeArea(
+    return  Scaffold(
+      body: SafeArea(
         //I didn't add appbar. this will add necessary padding for status bar.
-        child: new Column(
+        child: Column(
           children: [
-            new Expanded(
+             Expanded(
               flex: 2,
-              child: new Container(
+              child: Container(
                 //width: width / 1.5,
                 // this will give you flexible width not fixed width
                 margin: margin,
-                // variable
                 color: backColor,
-                // variable
-                child: new Column(
+                child: Row(
                   children: <Widget>[
-                    new Expanded(
-                      flex: 1,
-                      child: new Container(
+                     Expanded(
+                     // flex: 1,
+                      child: Container(
+                        color: Colors.amber,
                         alignment: Alignment.topCenter,
                         child: text, //variable above
                       ),
                     ),
-                    new Expanded(
-                      flex: 1,
-                      child: new Container(
-                        alignment: Alignment.bottomCenter,
+                     Expanded(
+                      //flex: 1,
+                      child: Container(
+                        color: Colors.blue,
+                        alignment: Alignment.topCenter,
+                        child: text, //variable above
+                      ),
+                    ),
+                    Expanded(
+                     // flex: 1,
+                      child: Container(
+                        color: Colors.red,
+                        alignment: Alignment.topCenter,
                         child: text, //variable above
                       ),
                     ),
@@ -109,9 +118,9 @@ class MenuLayout extends StatelessWidget {
                 ),
               ),
             ),
-            new Expanded(
+             Expanded(
               flex: 3,
-              child: new Container(
+              child: Container(
                 //width: width / 1.5,
                 // this will give you flexible width not fixed width
                 margin: margin,
