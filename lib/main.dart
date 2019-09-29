@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'SettingsScreen.dart';
@@ -67,33 +68,37 @@ class MainMenu extends StatelessWidget {
 }
 
 class MenuLayout extends StatelessWidget {
-  final text = new Text('Text here', style: new TextStyle(fontSize: 20.0));
+  final text = new Text('Text', style: new TextStyle(fontSize: 20.0));
   final margin =
       const EdgeInsets.only(top: 10.0, bottom: 10.0, right: 10.0, left: 10.0);
-  final backColor = Colors.grey;
+  final  double ei = 10.0;
+
 
   @override
   Widget build(BuildContext context) {
     //var width = MediaQuery.of(context).size.width; // Using this line I got the device screen width
     return Scaffold(
       body: SafeArea(
-        //I didn't add appbar. this will add necessary padding for status bar.
+        //No appbar here
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              flex: 2,
+              flex: 5,
               child: Container(
-                //width: width / 1.5,
+                //margin: const EdgeInsets.all(10.0),
+                width: 250.0,
                 // this will give you flexible width not fixed width
                 //margin: margin,
-                //color: backColor,
                 child: Column(
+
                   children: <Widget>[
                     Expanded(
                       flex: 1,
                       child: Container(
-                        color: Colors.amber,
-                        alignment: Alignment.topCenter,
+                        color: Colors.green,
+                        alignment: Alignment.center,
                         child: text, //variable above
                       ),
                     ),
@@ -101,15 +106,7 @@ class MenuLayout extends StatelessWidget {
                       flex: 1,
                       child: Container(
                         color: Colors.blue,
-                        alignment: Alignment.topCenter,
-                        child: text, //variable above
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        color: Colors.red,
-                        alignment: Alignment.topCenter,
+                        alignment: Alignment.center,
                         child: text, //variable above
                       ),
                     ),
@@ -118,13 +115,185 @@ class MenuLayout extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 3,
+              flex: 8,
               child: Container(
                 //width: width / 1.5,
                 // this will give you flexible width not fixed width
                 //margin: margin,
                 //variable
-                color: Colors.grey, //variable
+                //color: Colors.grey, //variable
+                child: GridView.count(
+                  shrinkWrap: true,
+                  primary: true,
+                  crossAxisCount: 3,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.all(ei),
+                      child: Center(
+                        child: GridTile(
+                          footer: Text(
+                            'Item',
+                            textAlign: TextAlign.center,
+                          ),
+                          header: Text(
+                            'SubItem ',
+                            textAlign: TextAlign.center,
+                          ),
+                          child: Icon(Icons.access_alarm,
+                              size: 40.0, color: Colors.white30),
+                        ),
+                      ),
+                      color: Colors.blue[400],
+                      margin: EdgeInsets.all(1.0),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(ei),
+                      child: Center(
+                        child: GridTile(
+                          footer: Text(
+                            'Item',
+                            textAlign: TextAlign.center,
+                          ),
+                          header: Text(
+                            'SubItem ',
+                            textAlign: TextAlign.center,
+                          ),
+                          child: Icon(Icons.access_alarm,
+                              size: 40.0, color: Colors.white30),
+                        ),
+                      ),
+                      color: Colors.blue[400],
+                      margin: EdgeInsets.all(1.0),
+                    ),Container(
+                      padding: EdgeInsets.all(ei),
+                      child: Center(
+                        child: GridTile(
+                          footer: Text(
+                            'Item',
+                            textAlign: TextAlign.center,
+                          ),
+                          header: Text(
+                            'SubItem ',
+                            textAlign: TextAlign.center,
+                          ),
+                          child: Icon(Icons.access_alarm,
+                              size: 40.0, color: Colors.white30),
+                        ),
+                      ),
+                      color: Colors.blue[400],
+                      margin: EdgeInsets.all(1.0),
+                    ),Container(
+                      padding: EdgeInsets.all(ei),
+                      child: Center(
+                        child: GridTile(
+                          footer: Text(
+                            'Item',
+                            textAlign: TextAlign.center,
+                          ),
+                          header: Text(
+                            'SubItem ',
+                            textAlign: TextAlign.center,
+                          ),
+                          child: Icon(Icons.access_alarm,
+                              size: 40.0, color: Colors.white30),
+                        ),
+                      ),
+                      color: Colors.blue[400],
+                      margin: EdgeInsets.all(1.0),
+                    ),Container(
+                      padding: EdgeInsets.all(ei),
+                      child: Center(
+                        child: GridTile(
+                          footer: Text(
+                            'Item',
+                            textAlign: TextAlign.center,
+                          ),
+                          header: Text(
+                            'SubItem ',
+                            textAlign: TextAlign.center,
+                          ),
+                          child: Icon(Icons.access_alarm,
+                              size: 40.0, color: Colors.white30),
+                        ),
+                      ),
+                      color: Colors.blue[400],
+                      margin: EdgeInsets.all(1.0),
+                    ),Container(
+                      padding: EdgeInsets.all(ei),
+                      child: Center(
+                        child: GridTile(
+                          footer: Text(
+                            'Item',
+                            textAlign: TextAlign.center,
+                          ),
+                          header: Text(
+                            'SubItem ',
+                            textAlign: TextAlign.center,
+                          ),
+                          child: Icon(Icons.access_alarm,
+                              size: 40.0, color: Colors.white30),
+                        ),
+                      ),
+                      color: Colors.blue[400],
+                      margin: EdgeInsets.all(1.0),
+                    ),Container(
+                      padding: EdgeInsets.all(ei),
+                      child: Center(
+                        child: GridTile(
+                          footer: Text(
+                            'Item',
+                            textAlign: TextAlign.center,
+                          ),
+                          header: Text(
+                            'SubItem ',
+                            textAlign: TextAlign.center,
+                          ),
+                          child: Icon(Icons.access_alarm,
+                              size: 40.0, color: Colors.white30),
+                        ),
+                      ),
+                      color: Colors.blue[400],
+                      margin: EdgeInsets.all(1.0),
+                    ),Container(
+                      padding: EdgeInsets.all(ei),
+                      child: Center(
+                        child: GridTile(
+                          footer: Text(
+                            'Item',
+                            textAlign: TextAlign.center,
+                          ),
+                          header: Text(
+                            'SubItem ',
+                            textAlign: TextAlign.center,
+                          ),
+                          child: Icon(Icons.access_alarm,
+                              size: 40.0, color: Colors.white30),
+                        ),
+                      ),
+                      color: Colors.blue[400],
+                      margin: EdgeInsets.all(1.0),
+                    ),Container(
+                      padding: EdgeInsets.all(ei),
+                      child: Center(
+                        child: GridTile(
+                          footer: Text(
+                            'Item',
+                            textAlign: TextAlign.center,
+                          ),
+                          header: Text(
+                            'SubItem ',
+                            textAlign: TextAlign.center,
+                          ),
+                          child: Icon(Icons.access_alarm,
+                              size: 20.0, color: Colors.white30),
+                        ),
+                      ),
+                      color: Colors.blue[400],
+                      margin: EdgeInsets.all(1.0),
+                    )
+
+                  ],
+                ),
               ),
             ),
           ],
