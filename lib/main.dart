@@ -24,46 +24,49 @@ class HomePage extends StatelessWidget {
 class MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.grey,
-          title: Text('smartwaistbag'),
-          centerTitle: true,
-          leading: IconButton(
-              icon: Image.asset(
-                'images/logo_001.png',
-                fit: BoxFit.contain,
-                height: 56,
-              ),
-              onPressed: () {
-                final snackBar = SnackBar(
-                  content: Text('A SnackBar!'),
-                  action: SnackBarAction(
-                    label: 'Undo',
-                    onPressed: () {
-                      // Some code to undo the change.
-                    },
+    return SafeArea(
+      top: true,
+      bottom: true,
+        child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.grey,
+              title: Text('smartwaistbag'),
+              centerTitle: true,
+              leading: IconButton(
+                  icon: Image.asset(
+                    'images/logo_001.png',
+                    fit: BoxFit.contain,
+                    height: 56,
                   ),
-                );
-                // Find the Scaffold in the widget tree and use it to show a SnackBar.
-                Scaffold.of(context).showSnackBar(snackBar);
-              },
-              tooltip: 'Prev'),
-          actions: <Widget>[
-            IconButton(
-                icon: Image.asset(
-                  'images/github_logo_256.png',
-                  fit: BoxFit.contain,
-                  height: 32,
-                ),
-                onPressed: () {
-                  final snackBar = SnackBar(content: Text("Tap"));
-                  Scaffold.of(context).showSnackBar(snackBar);
-                },
-                tooltip: 'Next')
-          ],
-        ),
-        body: MenuLayout());
+                  onPressed: () {
+                    final snackBar = SnackBar(
+                      content: Text('A SnackBar!'),
+                      action: SnackBarAction(
+                        label: 'Undo',
+                        onPressed: () {
+                          // Some code to undo the change.
+                        },
+                      ),
+                    );
+                    // Find the Scaffold in the widget tree and use it to show a SnackBar.
+                    Scaffold.of(context).showSnackBar(snackBar);
+                  },
+                  tooltip: 'Prev'),
+              actions: <Widget>[
+                IconButton(
+                    icon: Image.asset(
+                      'images/github_logo_256.png',
+                      fit: BoxFit.contain,
+                      height: 32,
+                    ),
+                    onPressed: () {
+                      final snackBar = SnackBar(content: Text("Tap"));
+                      Scaffold.of(context).showSnackBar(snackBar);
+                    },
+                    tooltip: 'Next')
+              ],
+            ),
+            body: MenuLayout()));
   }
 }
 
@@ -71,8 +74,7 @@ class MenuLayout extends StatelessWidget {
   final text = new Text('Text', style: new TextStyle(fontSize: 20.0));
   final margin =
       const EdgeInsets.only(top: 10.0, bottom: 10.0, right: 10.0, left: 10.0);
-  final  double ei = 10.0;
-
+  final double ei = 10.0;
 
   @override
   Widget build(BuildContext context) {
@@ -81,18 +83,18 @@ class MenuLayout extends StatelessWidget {
       body: SafeArea(
         //No appbar here
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               flex: 5,
               child: Container(
                 //margin: const EdgeInsets.all(10.0),
-                width: 250.0,
+                // width: 250.0,
                 // this will give you flexible width not fixed width
                 //margin: margin,
                 child: Column(
-
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Expanded(
                       flex: 1,
@@ -121,179 +123,7 @@ class MenuLayout extends StatelessWidget {
                 // this will give you flexible width not fixed width
                 //margin: margin,
                 //variable
-                //color: Colors.grey, //variable
-                child: GridView.count(
-                  shrinkWrap: true,
-                  primary: true,
-                  crossAxisCount: 3,
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.all(ei),
-                      child: Center(
-                        child: GridTile(
-                          footer: Text(
-                            'Item',
-                            textAlign: TextAlign.center,
-                          ),
-                          header: Text(
-                            'SubItem ',
-                            textAlign: TextAlign.center,
-                          ),
-                          child: Icon(Icons.access_alarm,
-                              size: 40.0, color: Colors.white30),
-                        ),
-                      ),
-                      color: Colors.blue[400],
-                      margin: EdgeInsets.all(1.0),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(ei),
-                      child: Center(
-                        child: GridTile(
-                          footer: Text(
-                            'Item',
-                            textAlign: TextAlign.center,
-                          ),
-                          header: Text(
-                            'SubItem ',
-                            textAlign: TextAlign.center,
-                          ),
-                          child: Icon(Icons.access_alarm,
-                              size: 40.0, color: Colors.white30),
-                        ),
-                      ),
-                      color: Colors.blue[400],
-                      margin: EdgeInsets.all(1.0),
-                    ),Container(
-                      padding: EdgeInsets.all(ei),
-                      child: Center(
-                        child: GridTile(
-                          footer: Text(
-                            'Item',
-                            textAlign: TextAlign.center,
-                          ),
-                          header: Text(
-                            'SubItem ',
-                            textAlign: TextAlign.center,
-                          ),
-                          child: Icon(Icons.access_alarm,
-                              size: 40.0, color: Colors.white30),
-                        ),
-                      ),
-                      color: Colors.blue[400],
-                      margin: EdgeInsets.all(1.0),
-                    ),Container(
-                      padding: EdgeInsets.all(ei),
-                      child: Center(
-                        child: GridTile(
-                          footer: Text(
-                            'Item',
-                            textAlign: TextAlign.center,
-                          ),
-                          header: Text(
-                            'SubItem ',
-                            textAlign: TextAlign.center,
-                          ),
-                          child: Icon(Icons.access_alarm,
-                              size: 40.0, color: Colors.white30),
-                        ),
-                      ),
-                      color: Colors.blue[400],
-                      margin: EdgeInsets.all(1.0),
-                    ),Container(
-                      padding: EdgeInsets.all(ei),
-                      child: Center(
-                        child: GridTile(
-                          footer: Text(
-                            'Item',
-                            textAlign: TextAlign.center,
-                          ),
-                          header: Text(
-                            'SubItem ',
-                            textAlign: TextAlign.center,
-                          ),
-                          child: Icon(Icons.access_alarm,
-                              size: 40.0, color: Colors.white30),
-                        ),
-                      ),
-                      color: Colors.blue[400],
-                      margin: EdgeInsets.all(1.0),
-                    ),Container(
-                      padding: EdgeInsets.all(ei),
-                      child: Center(
-                        child: GridTile(
-                          footer: Text(
-                            'Item',
-                            textAlign: TextAlign.center,
-                          ),
-                          header: Text(
-                            'SubItem ',
-                            textAlign: TextAlign.center,
-                          ),
-                          child: Icon(Icons.access_alarm,
-                              size: 40.0, color: Colors.white30),
-                        ),
-                      ),
-                      color: Colors.blue[400],
-                      margin: EdgeInsets.all(1.0),
-                    ),Container(
-                      padding: EdgeInsets.all(ei),
-                      child: Center(
-                        child: GridTile(
-                          footer: Text(
-                            'Item',
-                            textAlign: TextAlign.center,
-                          ),
-                          header: Text(
-                            'SubItem ',
-                            textAlign: TextAlign.center,
-                          ),
-                          child: Icon(Icons.access_alarm,
-                              size: 40.0, color: Colors.white30),
-                        ),
-                      ),
-                      color: Colors.blue[400],
-                      margin: EdgeInsets.all(1.0),
-                    ),Container(
-                      padding: EdgeInsets.all(ei),
-                      child: Center(
-                        child: GridTile(
-                          footer: Text(
-                            'Item',
-                            textAlign: TextAlign.center,
-                          ),
-                          header: Text(
-                            'SubItem ',
-                            textAlign: TextAlign.center,
-                          ),
-                          child: Icon(Icons.access_alarm,
-                              size: 40.0, color: Colors.white30),
-                        ),
-                      ),
-                      color: Colors.blue[400],
-                      margin: EdgeInsets.all(1.0),
-                    ),Container(
-                      padding: EdgeInsets.all(ei),
-                      child: Center(
-                        child: GridTile(
-                          footer: Text(
-                            'Item',
-                            textAlign: TextAlign.center,
-                          ),
-                          header: Text(
-                            'SubItem ',
-                            textAlign: TextAlign.center,
-                          ),
-                          child: Icon(Icons.access_alarm,
-                              size: 20.0, color: Colors.white30),
-                        ),
-                      ),
-                      color: Colors.blue[400],
-                      margin: EdgeInsets.all(1.0),
-                    )
-
-                  ],
-                ),
+                color: Colors.grey, //variable
               ),
             ),
           ],
