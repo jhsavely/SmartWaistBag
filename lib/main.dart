@@ -4,6 +4,26 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'SettingsScreen.dart';
 
+List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
+  const StaggeredTile.count(3, 4.2),
+  const StaggeredTile.count(3, 4.2),
+  const StaggeredTile.count(3, 4.2),
+  const StaggeredTile.count(3, 4.2),
+  const StaggeredTile.count(3, 4.2),
+  const StaggeredTile.count(3, 4.2),
+];
+
+List<Widget> _tiles = const <Widget>[
+  const _MyTile(Colors.grey, Icons.fingerprint),
+  const _MyTile(Colors.grey, Icons.map),
+  const _MyTile(Colors.grey, Icons.book),
+  const _MyTile(Colors.grey, Icons.lock),
+  const _MyTile(Colors.grey, Icons.alarm),
+  const _MyTile(Colors.grey, Icons.settings),
+];
+
+
+
 void main() {
   runApp(HomePage());
 }
@@ -25,8 +45,8 @@ class MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      top: true,
-      bottom: true,
+        top: true,
+        bottom: true,
         child: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.grey,
@@ -34,7 +54,7 @@ class MainMenu extends StatelessWidget {
               centerTitle: true,
               leading: IconButton(
                   icon: Image.asset(
-                    'images/logo_001.png',
+                    'images/github_logo_256.png',
                     fit: BoxFit.contain,
                     height: 56,
                   ),
@@ -71,60 +91,60 @@ class MainMenu extends StatelessWidget {
 }
 
 class MenuLayout extends StatelessWidget {
-  final text = new Text('Text', style: new TextStyle(fontSize: 20.0));
   final margin =
       const EdgeInsets.only(top: 10.0, bottom: 10.0, right: 10.0, left: 10.0);
-  final double ei = 10.0;
+
 
   @override
   Widget build(BuildContext context) {
     //var width = MediaQuery.of(context).size.width; // Using this line I got the device screen width
     return Scaffold(
       body: SafeArea(
-        //No appbar here
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               flex: 5,
-              child: Container(
-                //margin: const EdgeInsets.all(10.0),
-                // width: 250.0,
-                // this will give you flexible width not fixed width
-                //margin: margin,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
+              child: Row(
+                  children: [
                     Expanded(
-                      flex: 1,
-                      child: Container(
-                        color: Colors.green,
-                        alignment: Alignment.center,
-                        child: text, //variable above
-                      ),
+                      flex: 3,
+                      child: Row(children: [
+                        Expanded(
+                            flex: 1,
+                            child: Column(
+                              children: [
+                                _bagChargeIndicator(),
+                                _wireLessIndicator(),
+                              ],
+                            ))
+                      ]),
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        color: Colors.blue,
-                        alignment: Alignment.center,
-                        child: text, //variable above
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                    _locationIndicator()
+                  ]),
             ),
             Expanded(
               flex: 8,
-              child: Container(
-                //width: width / 1.5,
-                // this will give you flexible width not fixed width
-                //margin: margin,
-                //variable
-                color: Colors.grey, //variable
-              ),
+              child: Padding(
+
+                  padding: const EdgeInsets.only(top: 1.0),
+                  child: new StaggeredGridView.count(
+
+                    crossAxisCount: 9,
+                    staggeredTiles: _staggeredTiles,
+                    children: _tiles,
+                    mainAxisSpacing: 1.0,
+                    crossAxisSpacing: 1.0,
+                    padding: const EdgeInsets.all(1.0),
+                  )
+            )
+
+
+//              Container(
+//                //width: width / 1.5,
+//                //margin: margin,
+//                //variable
+//                color: Colors.grey, //variable
+//              ),
             ),
           ],
         ),
@@ -133,20 +153,86 @@ class MenuLayout extends StatelessWidget {
   }
 }
 
-class Indication extends StatefulWidget {
-  @override
-  _IndicationState createState() => _IndicationState();
+Widget _bagChargeIndicator() {
+  return Expanded(
+    child: Container(
+      constraints: BoxConstraints.expand(),
+      color: Colors.grey,
+      child: Center(
+        child: Text(
+          'Bag charge',
+          style: TextStyle(fontSize: 10.0),
+        ),
+      ),
+    ),
+  );
 }
 
-class _IndicationState extends State<Indication> {
+Widget _wireLessIndicator() {
+  return Expanded(
+
+    child: Container(
+      constraints: BoxConstraints.expand(),
+      color: Colors.deepOrange,
+      child: Center(
+        child: Text(
+          'Wireless',
+          style: TextStyle(fontSize: 10.0),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget _locationIndicator() {
+  return Expanded(
+    child: Container(
+      constraints: BoxConstraints.expand(),
+      color: Colors.blueGrey,
+      child: Column(
+        children:[
+          Text('Location', style: TextStyle(fontSize: 10.0),
+         ),
+          Icon
+        ]
+      ),
+    ),
+  );
+}
+
+
+class _MyTile extends StatelessWidget {
+  const _MyTile(this.backgroundColor, this.iconData);
+  final Color backgroundColor;
+  final IconData iconData;
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
+    return new Card(
+      color: backgroundColor,
+      child: new InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => new SettingsScreen()),
+          );
+        },
+        child: new Center(
+          child: new Padding(
+            padding: const EdgeInsets.all(1.0),
+            child: new Icon(
+              iconData,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
-void _showToast(BuildContext context) {
+
+  void _showToast(BuildContext context) {
   final scaffold = Scaffold.of(context);
   scaffold.showSnackBar(
     SnackBar(
@@ -155,4 +241,21 @@ void _showToast(BuildContext context) {
           label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
     ),
   );
+}
+
+Widget _buildBox({int points, Color color, Color textColor = Colors.white}) {
+  return Expanded(
+    flex: points,
+    child: Container(
+      constraints: BoxConstraints.expand(),
+      color: color,
+      child: Center(
+        child: Text(
+          '$points',
+          style: TextStyle(fontSize: 32.0, color: textColor),
+        ),
+      ),
+    ),
+  );
+
 }
