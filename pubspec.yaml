@@ -56,6 +56,7 @@ flutter:
     - images/gsm_1.png
     - images/gps_1.png
     - images/bluetooth_1.png
+    - images/gsm_2.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

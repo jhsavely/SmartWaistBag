@@ -56,13 +56,17 @@ class MainMenu extends StatelessWidget {
                    child: Container(
                       // width: 20,
                       //height: 30,
-                      child:Text('smartwaistbag', style: TextStyle(fontSize: 30.0 ,color: Colors.green[800],
-                        fontWeight: FontWeight.bold,)),
+                      child:Text('smartwaistbag',
+                          style: TextStyle(
+                            fontSize: 30.0 ,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w300,
+                          )
+                      ),
                     ),
                   ),
               ),
 
-              //
               centerTitle: true,
               leading: IconButton(
                   icon: Image.asset(
@@ -157,8 +161,11 @@ Widget _bagChargeIndicator() {
     child: Container(
       constraints: BoxConstraints.expand(),
       color: Colors.white12,
-      child: Row(children: [
-        Text('Bag charge', style: TextStyle(fontSize: 10.0)),
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+       // Text('Bag charge', style: TextStyle(fontSize: 10.0)),
+
         Container(
           child: Card(
             child: InkWell(
@@ -219,32 +226,36 @@ Widget _wireLessIndicator() {
               'Wireless',
               style: TextStyle(fontSize: 10.0),
             ),
-            Container(
-              child: Card(
-                child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    print('Card tapped.');
-                  },
-                  child: Container(
-                    // width: 20,
-                    //height: 30,
-
-                    child: Image.asset(
-                      'images/gsm_1.png',
-                      fit: BoxFit.contain,
-                      height: 56,
-                    ),
-                  ),
-                ),
-              ),
-              decoration: new BoxDecoration(boxShadow: [
-                new BoxShadow(
-                  color: Colors.green,
-                  blurRadius: 10.0,
-                ),
-              ]),
+            Image.asset(
+              'images/gsm_2.png',
+              fit: BoxFit.contain,
+              height: 56,
             ),
+//            Container(
+//              child: Card(
+//                child: InkWell(
+//                  splashColor: Colors.blue.withAlpha(30),
+//                  onTap: () {
+//                    print('Card tapped.');
+//                  },
+//                  child: Container(
+//                    // width: 20,
+//                    //height: 30,
+//                    child: Row(
+//                      children: <Widget>[
+//
+//                      ],
+//                    ),
+//                  ),
+//                ),
+//              ),
+//              decoration: new BoxDecoration(boxShadow: [
+//                new BoxShadow(
+//                  color: Colors.green,
+//                  blurRadius: 10.0,
+//                ),
+//              ]),
+//            ),
 
 //          Image.asset(
 //            'images/gsm_1.png',
@@ -262,20 +273,22 @@ Widget _locationIndicator() {
       constraints: BoxConstraints.expand(),
       color: Colors.white12,
       child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        Text(
-          'Location',
-          style: TextStyle(fontSize: 10.0),
-        ),
-        Image.asset(
-          'images/wifi_1.png',
-          fit: BoxFit.contain,
-          height: 56,
-        ),
-        Image.asset(
-          'images/gps_1.png',
-          fit: BoxFit.contain,
-          height: 56,
+          Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  'Location',
+                  style: TextStyle(fontSize: 10.0),
+                ),
+                Image.asset(
+                  'images/wifi_1.png',
+                  fit: BoxFit.contain,
+                  height: 56,
+                ),
+                Image.asset(
+                  'images/gps_1.png',
+                  fit: BoxFit.contain,
+                  height: 56,
         ),
       ]),
     ),
