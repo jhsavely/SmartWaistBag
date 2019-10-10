@@ -161,14 +161,15 @@ Widget _bagChargeIndicator() {
     child: Container(
       constraints: BoxConstraints.expand(),
       color: Colors.white12,
-      child: Row(
+      child:Card(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
        // Text('Bag charge', style: TextStyle(fontSize: 10.0)),
 
-        Container(
-          child: Card(
-            child: InkWell(
+          Container(
+           child: Card(
+             child: InkWell(
               splashColor: Colors.blue.withAlpha(30),
               onTap: () {
                 print('Card tapped.');
@@ -202,6 +203,7 @@ Widget _bagChargeIndicator() {
           ]),
         ),
       ]),
+    )
     ),
   );
 }
@@ -211,7 +213,8 @@ Widget _wireLessIndicator() {
     child: Container(
       constraints: BoxConstraints.expand(),
       color: Colors.white12,
-      child: Row(
+      child: Card (
+        child:Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -263,6 +266,7 @@ Widget _wireLessIndicator() {
 //            height: 56,
 //          ),
           ]),
+    )
     ),
   );
 }
@@ -272,8 +276,8 @@ Widget _locationIndicator() {
     child: Container(
       constraints: BoxConstraints.expand(),
       color: Colors.white12,
-      child:
-          Column(
+      child:Card(
+        child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
@@ -291,6 +295,7 @@ Widget _locationIndicator() {
                   height: 56,
         ),
       ]),
+    )
     ),
   );
 }
