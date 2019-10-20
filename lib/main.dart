@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'SettingsScreen.dart';
+import 'MapScreen.dart';
 
 List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
   const StaggeredTile.count(3, 4.2),
@@ -15,12 +16,12 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
 ];
 
 List<Widget> _tiles = const <Widget>[
-  const _MyTile(Colors.grey, Icons.fingerprint),
-  const _MyTile(Colors.grey, Icons.map),
-  const _MyTile(Colors.grey, Icons.book),
-  const _MyTile(Colors.grey, Icons.lock),
-  const _MyTile(Colors.grey, Icons.alarm),
-  const _MyTile(Colors.grey, Icons.settings),
+  const _SettingsTile(Colors.grey, Icons.fingerprint),
+  const _MapTile(Colors.grey, Icons.map),
+  const _SettingsTile(Colors.grey, Icons.book),
+  const _SettingsTile(Colors.grey, Icons.lock),
+  const _SettingsTile(Colors.grey, Icons.alarm),
+  const _SettingsTile(Colors.grey, Icons.settings),
 ];
 
 void main() {
@@ -161,16 +162,15 @@ Widget _bagChargeIndicator() {
     child: Container(
       constraints: BoxConstraints.expand(),
       color: Colors.white12,
-      child:Card(
-        child: Row(
+      child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
        // Text('Bag charge', style: TextStyle(fontSize: 10.0)),
 
-          Container(
-           child: Card(
-             child: InkWell(
-              splashColor: Colors.blue.withAlpha(30),
+        Container(
+          child: Card(
+            child: InkWell(
+              splashColor: Colors.green.withAlpha(30),
               onTap: () {
                 print('Card tapped.');
               },
@@ -184,7 +184,7 @@ Widget _bagChargeIndicator() {
                     animation: true,
                     animationDuration: 1000,
                     lineHeight: 20.0,
-                    //leading: new Text("left content"),
+                    leading: new Text("Bag"),
                     // trailing: new Text("right content"),
                     percent: 0.34,
                     center: Text("34.0%"),
@@ -203,7 +203,6 @@ Widget _bagChargeIndicator() {
           ]),
         ),
       ]),
-    )
     ),
   );
 }
@@ -213,8 +212,7 @@ Widget _wireLessIndicator() {
     child: Container(
       constraints: BoxConstraints.expand(),
       color: Colors.white12,
-      child: Card (
-        child:Row(
+      child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -266,7 +264,6 @@ Widget _wireLessIndicator() {
 //            height: 56,
 //          ),
           ]),
-    )
     ),
   );
 }
@@ -276,8 +273,8 @@ Widget _locationIndicator() {
     child: Container(
       constraints: BoxConstraints.expand(),
       color: Colors.white12,
-      child:Card(
-        child: Column(
+      child:
+          Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
@@ -295,13 +292,12 @@ Widget _locationIndicator() {
                   height: 56,
         ),
       ]),
-    )
     ),
   );
 }
 
-class _MyTile extends StatelessWidget {
-  const _MyTile(this.backgroundColor, this.iconData);
+class _SettingsTile extends StatelessWidget {
+  const _SettingsTile(this.backgroundColor, this.iconData);
 
   final Color backgroundColor;
   final IconData iconData;
@@ -315,6 +311,37 @@ class _MyTile extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => new SettingsScreen()),
+          );
+        },
+        child: new Center(
+          child: new Padding(
+            padding: const EdgeInsets.all(1.0),
+            child: new Icon(
+              iconData,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _MapTile extends StatelessWidget {
+  const _MapTile(this.backgroundColor, this.iconData);
+
+  final Color backgroundColor;
+  final IconData iconData;
+
+  @override
+  Widget build(BuildContext context) {
+    return new Card(
+      color: backgroundColor,
+      child: new InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => new MapScreen()),
           );
         },
         child: new Center(
