@@ -51,23 +51,21 @@ class MainMenu extends StatelessWidget {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0.0,
-              title:Container(
+              title: Container(
                 child: InkWell(
-                    splashColor: Colors.blue.withAlpha(30),
-                   child: Container(
-                      // width: 20,
-                      //height: 30,
-                      child:Text('smartwaistbag',
-                          style: TextStyle(
-                            fontSize: 30.0 ,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w300,
-                          )
-                      ),
-                    ),
+                  splashColor: Colors.blue.withAlpha(30),
+                  child: Container(
+                    // width: 20,
+                    //height: 30,
+                    child: Text('smartwaistbag',
+                        style: TextStyle(
+                          fontSize: 30.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w300,
+                        )),
                   ),
+                ),
               ),
-
               centerTitle: true,
               leading: IconButton(
                   icon: Image.asset(
@@ -108,50 +106,64 @@ class MainMenu extends StatelessWidget {
 }
 
 class MenuLayout extends StatelessWidget {
-  final margin =
-      const EdgeInsets.only(top: 10.0, bottom: 10.0, right: 10.0, left: 10.0);
+//  final margin =
+//      const EdgeInsets.only(top: 10.0, bottom: 10.0, right: 10.0, left: 10.0);
 
   @override
   Widget build(BuildContext context) {
     //var width = MediaQuery.of(context).size.width; // Using this line I got the device screen width
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              flex: 5,
-              child: Row(
-                  children: [
-                      Expanded(
-                          flex: 3,
-                          child: Row(children: [
-                              Expanded(
-                                  flex: 1,
-                                  child: Column(
-                                    children: [
-                                      _bagChargeIndicator(),
-                                      _wireLessIndicator(),
-                                    ],
-                                  ))
+    return Container(
+      width: double.infinity,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+          body: SafeArea(
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: Row(children: [
+                    Expanded(
+                      flex: 3,
+                      child: Row(children: [
+                        Expanded(
+                            flex: 1,
+                            child: Column(
+                              children: [
+                                _bagChargeIndicator(),
+                                _wireLessIndicator(),
+                              ],
+                        ))
+                      ]),
+                    ),
+                    _locationIndicator()
                   ]),
                 ),
-                _locationIndicator()
-              ]),
+                Expanded(
+                    flex: 8,
+                    child: Padding(
+                        padding: const EdgeInsets.only(top: 1.0),
+                        child: new StaggeredGridView.count(
+                          crossAxisCount: 9,
+                          staggeredTiles: _staggeredTiles,
+                          children: _tiles,
+                          mainAxisSpacing: 1.0,
+                          crossAxisSpacing: 1.0,
+                          padding: const EdgeInsets.all(1.0),
+                        )
+                    )
+                ),
+              ],
             ),
-            Expanded(
-                flex: 8,
-                child: Padding(
-                    padding: const EdgeInsets.only(top: 1.0),
-                    child: new StaggeredGridView.count(
-                      crossAxisCount: 9,
-                      staggeredTiles: _staggeredTiles,
-                      children: _tiles,
-                      mainAxisSpacing: 1.0,
-                      crossAxisSpacing: 1.0,
-                      padding: const EdgeInsets.all(1.0),
-                    ))),
-          ],
+          ),
         ),
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xAA00ff00),Color(0xffffffff)],
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            tileMode: TileMode.clamp
+          )
+
       ),
     );
   }
@@ -160,51 +172,49 @@ class MenuLayout extends StatelessWidget {
 Widget _bagChargeIndicator() {
   return Expanded(
     child: Container(
-      constraints: BoxConstraints.expand(),
-      color: Colors.white12,
-      child: Card(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-       // Text('Bag charge', style: TextStyle(fontSize: 10.0)),
-
-          Container(
-            child: Card(
-              child: InkWell(
-                splashColor: Colors.green.withAlpha(30),
-                onTap: () {
-                print('Card tapped.');
-                },
-                child: Container(
-                  // width: 20,
-                 //height: 30,
-                   child: Padding(
-                      padding: EdgeInsets.all(15.0),
-                    child: new LinearPercentIndicator(
-                      width: 170.0,
-                      animation: true,
-                      animationDuration: 1000,
-                      lineHeight: 20.0,
-                        leading: new Text("Bag"),
-                        // trailing: new Text("right content"),
-                      percent: 0.34,
-                        center: Text("34.0%"),
-                      linearStrokeCap: LinearStrokeCap.butt,
-                      progressColor: Colors.green,
+        constraints: BoxConstraints.expand(),
+        color: Colors.white12,
+        child: Card(
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            // Text('Bag charge', style: TextStyle(fontSize: 10.0)),
+                  Container(
+                    child: Card(
+                      child: InkWell(
+                        splashColor: Colors.green.withAlpha(30),
+                        onTap: () {
+                          print('Card tapped.');
+                        },
+                        child: Container(
+                          // width: 20,
+                          //height: 30,
+                          child: Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: new LinearPercentIndicator(
+                              width: 170.0,
+                              animation: true,
+                              animationDuration: 1000,
+                              lineHeight: 20.0,
+                              leading: new Text("Bag"),
+                              // trailing: new Text("right content"),
+                              percent: 0.34,
+                              center: Text("34.0%"),
+                              linearStrokeCap: LinearStrokeCap.butt,
+                              progressColor: Colors.green,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    decoration: new BoxDecoration(boxShadow: [
+                      new BoxShadow(
+                        color: Colors.green,
+                        blurRadius: 10.0,
+                      ),
+                    ]),
                   ),
-                ),
-              ),
-            ),
-          ),
-          decoration: new BoxDecoration(boxShadow: [
-            new BoxShadow(
-              color: Colors.green,
-              blurRadius: 10.0,
-            ),
-          ]),
+              ]),
         ),
-      ]),
-    )
     ),
   );
 }
@@ -212,29 +222,29 @@ Widget _bagChargeIndicator() {
 Widget _wireLessIndicator() {
   return Expanded(
     child: Container(
-      constraints: BoxConstraints.expand(),
-      color: Colors.white12,
-      child: Card(
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          verticalDirection: VerticalDirection.down,
-          children: [
-            Image.asset(
-              'images/bluetooth_1.png',
-              fit: BoxFit.contain,
-              height: 56,
-            ),
-            Text(
-              'Wireless',
-              style: TextStyle(fontSize: 10.0),
-            ),
-            Image.asset(
-              'images/gsm_2.png',
-              fit: BoxFit.contain,
-              height: 56,
-            ),
+        constraints: BoxConstraints.expand(),
+        color: Colors.white12,
+        child: Card(
+          child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              verticalDirection: VerticalDirection.down,
+              children: [
+                Image.asset(
+                  'images/bluetooth_1.png',
+                  fit: BoxFit.contain,
+                  height: 56,
+                ),
+                Text(
+                  'Wireless',
+                  style: TextStyle(fontSize: 10.0),
+                ),
+                Image.asset(
+                  'images/gsm_2.png',
+                  fit: BoxFit.contain,
+                  height: 56,
+                ),
 //            Container(
 //              child: Card(
 //                child: InkWell(
@@ -266,9 +276,8 @@ Widget _wireLessIndicator() {
 //            fit: BoxFit.contain,
 //            height: 56,
 //          ),
-          ]),
-        )
-    ),
+              ]),
+        )),
   );
 }
 
@@ -278,24 +287,24 @@ Widget _locationIndicator() {
       constraints: BoxConstraints.expand(),
       color: Colors.white12,
       child: Card(
-        child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'Location',
-                  style: TextStyle(fontSize: 10.0),
-                ),
-                Image.asset(
-                  'images/wifi_1.png',
-                  fit: BoxFit.contain,
-                  height: 56,
-                ),
-                Image.asset(
-                  'images/gps_1.png',
-                  fit: BoxFit.contain,
-                  height: 56,
-          ),
-        ]),
+        child:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                  Text(
+                    'Location',
+                    style: TextStyle(fontSize: 10.0),
+                  ),
+                  Image.asset(
+                    'images/wifi_1.png',
+                    fit: BoxFit.contain,
+                    height: 56,
+                  ),
+                  Image.asset(
+                    'images/gps_1.png',
+                    fit: BoxFit.contain,
+                    height: 56,
+                  ),
+                ]
+       ),
       ),
     ),
   );
