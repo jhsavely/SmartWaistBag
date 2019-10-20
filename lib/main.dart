@@ -162,34 +162,35 @@ Widget _bagChargeIndicator() {
     child: Container(
       constraints: BoxConstraints.expand(),
       color: Colors.white12,
-      child: Row(
+      child: Card(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
        // Text('Bag charge', style: TextStyle(fontSize: 10.0)),
 
-        Container(
-          child: Card(
-            child: InkWell(
-              splashColor: Colors.green.withAlpha(30),
-              onTap: () {
+          Container(
+            child: Card(
+              child: InkWell(
+                splashColor: Colors.green.withAlpha(30),
+                onTap: () {
                 print('Card tapped.');
-              },
-              child: Container(
-                // width: 20,
-                //height: 30,
-                child: Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: new LinearPercentIndicator(
-                    width: 170.0,
-                    animation: true,
-                    animationDuration: 1000,
-                    lineHeight: 20.0,
-                    leading: new Text("Bag"),
-                    // trailing: new Text("right content"),
-                    percent: 0.34,
-                    center: Text("34.0%"),
-                    linearStrokeCap: LinearStrokeCap.butt,
-                    progressColor: Colors.green,
+                },
+                child: Container(
+                  // width: 20,
+                 //height: 30,
+                   child: Padding(
+                      padding: EdgeInsets.all(15.0),
+                    child: new LinearPercentIndicator(
+                      width: 170.0,
+                      animation: true,
+                      animationDuration: 1000,
+                      lineHeight: 20.0,
+                        leading: new Text("Bag"),
+                        // trailing: new Text("right content"),
+                      percent: 0.34,
+                        center: Text("34.0%"),
+                      linearStrokeCap: LinearStrokeCap.butt,
+                      progressColor: Colors.green,
                   ),
                 ),
               ),
@@ -203,6 +204,7 @@ Widget _bagChargeIndicator() {
           ]),
         ),
       ]),
+    )
     ),
   );
 }
@@ -212,7 +214,8 @@ Widget _wireLessIndicator() {
     child: Container(
       constraints: BoxConstraints.expand(),
       color: Colors.white12,
-      child: Row(
+      child: Card(
+        child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -264,6 +267,7 @@ Widget _wireLessIndicator() {
 //            height: 56,
 //          ),
           ]),
+        )
     ),
   );
 }
@@ -273,8 +277,8 @@ Widget _locationIndicator() {
     child: Container(
       constraints: BoxConstraints.expand(),
       color: Colors.white12,
-      child:
-          Column(
+      child: Card(
+        child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
@@ -290,8 +294,9 @@ Widget _locationIndicator() {
                   'images/gps_1.png',
                   fit: BoxFit.contain,
                   height: 56,
-        ),
-      ]),
+          ),
+        ]),
+      ),
     ),
   );
 }
