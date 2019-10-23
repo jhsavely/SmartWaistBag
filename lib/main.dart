@@ -7,12 +7,15 @@ import 'SettingsScreen.dart';
 import 'MapScreen.dart';
 
 List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
-  const StaggeredTile.count(3, 4.2),
-  const StaggeredTile.count(3, 4.2),
-  const StaggeredTile.count(3, 4.2),
-  const StaggeredTile.count(3, 4.2),
-  const StaggeredTile.count(3, 4.2),
-  const StaggeredTile.count(3, 4.2),
+  const StaggeredTile.count(3, 2.8),
+  const StaggeredTile.count(3, 2.8),
+  const StaggeredTile.count(3, 2.8),
+  const StaggeredTile.count(3, 2.8),
+  const StaggeredTile.count(3, 2.8),
+  const StaggeredTile.count(3, 2.8),
+  const StaggeredTile.count(3, 2.8),
+  const StaggeredTile.count(3, 2.8),
+  const StaggeredTile.count(3, 2.8),
 ];
 
 List<Widget> _tiles = const <Widget>[
@@ -22,6 +25,9 @@ List<Widget> _tiles = const <Widget>[
   const _SettingsTile(Colors.grey, Icons.lock),
   const _SettingsTile(Colors.grey, Icons.alarm),
   const _SettingsTile(Colors.grey, Icons.settings),
+  const _SettingsTile(Colors.grey, Icons.account_balance_wallet),
+  const _SettingsTile(Colors.grey, Icons.ac_unit),
+  const _SettingsTile(Colors.grey, Icons.access_time),
 ];
 
 void main() {

@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
+
 import 'API.dart';
 import 'SettingsModel.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +41,7 @@ class _SettingsScreenState extends State {
 
   initState() {
     super.initState();
-    _getMySettings();
+    //_getMySettings();
   }
 
   dispose() {
@@ -51,24 +53,40 @@ class _SettingsScreenState extends State {
   @override
   build(context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Settings"),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        iconTheme: IconThemeData(
+          color: Colors.black, //changes color of arrow back button
         ),
-        body: ListView.builder(
-          itemCount: settings.length-1,
-          itemBuilder: (context, index) {
-            return Card(
-              child: SwitchListTile(
-                  value: _lights,
-                  onChanged: (bool value) {
-                    setState(() {
-                      _lights = value;
-                    });
-                  },
-                  secondary: Icon(icons[index]),
-                  title: Text(settings[index].name)),
-            );
-          },
-        ));
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context, false)),
+        title: Text("Settings",
+            style: TextStyle(
+              fontSize: 30.0,
+              color: Colors.black,
+              fontWeight: FontWeight.w300,
+            )),
+      ),
+      body: ListView.builder(itemBuilder: (context, index) {
+        return Card(
+          child: ListTile(
+            title: Text("Any Text"),
+            subtitle: Text("some other text"),
+          ),
+        );
+      }),
+    );
   }
 }
+//
+//SwitchListTile(
+//value: _lights,
+//onChanged: (bool value) {
+//setState(() {
+//_lights = value;
+//});
+//},
+//secondary: Icon(icons[index]),
+//title: Text(settings[index].name)),
